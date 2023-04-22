@@ -1,9 +1,12 @@
 {
+  "homepage": "https://github.com/Togrul20/News4Elderly.git",
   "name": "news4elderly",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "set HTTPS=true&&next dev",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
