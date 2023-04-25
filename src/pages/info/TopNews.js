@@ -1,20 +1,16 @@
 import Link from "next/link";
 import styles from "@/styles/Home.module.css";
-import { useEffect, useState } from "react";
-import axios from "axios";
 
 export const getStaticProps = async () => {
   const result = await fetch("https://inshorts.deta.dev/news?category");
   const options = await result.json();
 
   return {
-    props:{opt: options}
-  }
+    props: { info: options },
+  };
 };
 
-
-
-const TopNews = ({opt}) => {
+const TopNews = ({ info }) => {
   return (
     <div>
       <div className={styles.topnewsbackbtn}>
@@ -23,10 +19,10 @@ const TopNews = ({opt}) => {
         </Link>
       </div>
       <h1>TopNews</h1>
-      {opt.data.map((el) => (
-        <Link href={"/route/" + el.id} key={el.id} legacyBehavior>
+      {info.data.map((el) => (
+        <Link href={"/info/" + el.title} key={el.id} legacyBehavior>
           <a className="newscontents">
-            <p className="newscontentssingle">{el.content}</p>
+            <p className="newscontentssingle">{el.title}</p>
           </a>
         </Link>
       ))}

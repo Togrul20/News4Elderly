@@ -5,33 +5,36 @@ export const getStaticPaths = async () => {
   const res = await fetch("https://inshorts.deta.dev/news?category");
   const result = await res.json();
 
-  const paths = result.data.map(el => {
+  const paths = result.data.map((el) => {
     return {
-      params: { id: el.id },
+      params: { title: el.title },
     };
   });
 
   return {
-    paths,
+    paths: paths,
     fallback: false,
   };
 };
 
 export const getStaticProps = async (context) => {
-  const id = context.params.id;
-  const result = await fetch("https://inshorts.deta.dev/news?category" + id);
+  const title = context.params.title;
+  const result = await fetch(
+    "https://inshorts.deta.dev/news?category"
+  );
   const data = await result.json();
+  const pageData = data.data.filter((news) => news.title === title);
 
   return {
-    props: { content: data },
+    props: { context: pageData[0] },
   };
 };
 
-const Details = ({ content }) => {
+const Details = ({ context }) => {
   return (
     <div>
-      <h1>{content.id}</h1>
-      <p>{content.content}</p>
+      <h1>{context.title}</h1>
+      <p>{context.content}</p>
     </div>
   );
 };
