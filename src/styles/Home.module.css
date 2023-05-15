@@ -1,17 +1,187 @@
 /* Tablet and Smaller Desktop 701-1120 */
 /*Mobile*/
-@media (max-width: 700px) {
-  .topnewsbackbtn {
-    margin: 2px solid blue;
-    background-color: aliceblue;
-  }
-  .topnewslink {
-    color: black;
-    text-decoration: none;
-  }
-  .topnewslink::before {
-    content: "⬅️";
-    width: fit-content;
-    height: max-content;
+
+.newscontents {
+  text-decoration: none;
+  color: black;
+}
+
+.newscontentssingle {
+  padding: 10px;
+  font-size: 30px;
+  text-align: center;
+  color: white;
+  cursor: pointer;
+  position: relative;
+  display: block;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.newscontentssingle .contentTooltip {
+  visibility: hidden;
+  width: 120px;
+  background-color: rgb(255, 255, 255);
+  color: #000000;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  font-size: 20px;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -60px;
+  text-decoration: underline;
+}
+
+.newscontentssingle .contentTooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 10px;
+  border-style: solid;
+  border-color: rgb(255, 255, 255) transparent transparent transparent;
+}
+
+.newscontentssingle:hover .contentTooltip {
+  visibility: visible;
+}
+
+.sciencestyle {
+  flex: 1;
+  align-items: "center";
+  justify-content: "center";
+  box-sizing: "border-box";
+  background-color: #212121;
+  overflow: "hidden";
+  height: 100%;
+  margin-bottom: 40px;
+}
+
+.generalContainer {
+  padding: 0;
+  margin: 0 auto;
+  background-color: white;
+  border-radius: 5px;
+  margin-top: 50px;
+  width: 90vw;
+  box-sizing: border-box;
+  background-color: #0e0e0e;
+  box-shadow: 0px 5px 2px #ffffff30;
+  border: 4px solid rgb(248, 248, 248);
+}
+
+@media (min-width: 768px) {
+  /* styles for screens larger than 768px */
+  .generalContainer {
+    max-width: 768px;
+    padding: 0 0px;
   }
 }
+
+@media (min-width: 992px) {
+  /* styles for screens larger than 992px */
+  .generalContainer {
+    max-width: 992px;
+    padding: 0 0px;
+  }
+}
+
+@media (min-width: 1200px) {
+  /* styles for screens larger than 1200px */
+  .generalContainer {
+    max-width: 1200px;
+    padding: 0 0px;
+  }
+}
+
+.pageHeader {
+  color: white;
+  font-size: 40px;
+  text-align: center;
+  border: 2px solid white;
+  border-radius: 5px;
+  margin: 32px 0 20px 0;
+}
+
+.imageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  object-position: bottom;
+  filter: contrast(110%);
+  padding: 5px 5px;
+  margin: 0;
+  cursor: zoom-in;
+}
+
+@media (min-width: 300px) {
+  .imageContainer {
+    background-color: white;
+  }
+}
+
+.imageitslef {
+  width: 100%;
+  height: auto;
+  margin-top: 0;
+  object-fit: cover;
+  border-radius: 15px;
+  opacity: 4;
+  image-rendering: optimizeQuality;
+  image-rendering: crisp-edges;
+  filter: contrast(150%) brightness(110%) saturate(1);
+}
+
+@media (min-width: 556px) {
+  .imageitslef {
+    width: 100%;
+    height: auto;
+    margin-top: 0;
+    object-fit: cover;
+    border-radius: 15px;
+  }
+}
+
+@media (min-width: 756px) {
+  .imageitslef {
+    width: 80%;
+    height: auto;
+    margin-top: 0;
+    object-fit: cover;
+    border-radius: 15px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .imageitslef {
+    width: 75%;
+    height: auto;
+    margin-top: 0;
+    object-fit: cover;
+    border-radius: 15px;
+  }
+}
+
+/*----------------------------- Science news content parts ---------------------*/
+.articleContainer {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  box-sizing: "border-box";
+  background-color: #212121;
+}
+
+.articleTitle{
+  
+}
+
+.articleContent{}

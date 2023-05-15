@@ -1,0 +1,21 @@
+.google-translate {
+  display: none !important;
+}
+.goog-te-banner-frame {
+  display: none !important;
+}
+
+/* hide the Google Translate navbar */
+.goog-te-menu-value {
+  display: none !important;
+}
+
+/* show only the language select box */
+.goog-te-combo {
+  display: none !important;
+}
+
+.goog-te-banner-frame.skiptranslate {
+  display: none !important;
+}
+

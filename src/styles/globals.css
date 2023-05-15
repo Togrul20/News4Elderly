@@ -6,8 +6,19 @@
 
 html,
 body {
-  max-width: 100vw;
+  width: 100%;
   overflow-x: hidden;
+}
+
+@media (max-width: 600px) {
+  body::-webkit-scrollbar {
+    display: none;
+  }
+
+  body {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
 }
 
 .not-found {
@@ -16,12 +27,52 @@ body {
   font-weight: bolder;
 }
 
-.newscontents {
-  text-decoration: none;
-  color: black;
+/* Google translate remove navbar */
+body > .skiptranslate {
+  display: none;
 }
 
-.newscontentssingle{
-  margin: 10px 5px;
-  border: 1px solid blue;
+.goog-te-banner-frame.skiptranslate {
+  display: none !important;
+}
+
+@media print {
+  #google_translate_element {
+    display: none;
+  }
+}
+
+/* Google translate remove spinner */
+.google-translate {
+  display: none !important;
+}
+.goog-te-banner-frame {
+  display: none !important;
+}
+
+.goog-te-banner {
+  display: none !important;
+}
+
+/* hide the Google Translate navbar */
+.goog-te-menu-value {
+  display: none !important;
+}
+
+/* show only the language select box */
+.goog-te-combo {
+  display: block !important;
+}
+.spinner {
+  display: none;
+}
+
+.VIpgJd-ZVi9od-aZ2wEe-wOHMyf,
+.VIpgJd-ZVi9od-aZ2wEe-wOHMyf-ti6hGc {
+  display: none;
+}
+
+.googleSelectbox {
+  color: black;
+  font-size: 18px;
 }

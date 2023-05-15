@@ -1,0 +1,36 @@
+.topnewsbackbtn {
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+}
+.topnewsbackbtn p {
+  font-size: 25px;
+  margin-right: 5px;
+  color: black;
+}
+.topnewslink {
+  font-size: 25px;
+  color: black;
+  flex: 1;
+  text-decoration: none;
+  padding: 0;
+}
+
+@media (max-width: 600px) {
+  .topnewslink {
+    font-size: 18px;
+  }
+  .topnewsbackbtn p {
+    font-size: 18px;
+  }
+}
+.topnewslink::before {
+  content: "⬅️";
+  width: fit-content;
+  height: max-content;
+}
