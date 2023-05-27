@@ -2,39 +2,15 @@ import { useEffect, useState } from "react";
 import { SelectPicker } from "rsuite";
 import { getCookie, hasCookie, setCookie } from "cookies-next";
 import "../styles/GoogleTranslate.module.css";
-
-const languages = [
-  { label: "English", value: "/auto/en" },
-  { label: "Turkish", value: "/auto/tr" },
-  { label: "Azerbaijani", value: "/auto/az" },
-  { label: `Русский`, value: "/auto/ru" },
-  { label: "Polski", value: "/auto/pl" },
-  { label: "Arabic", value: "/auto/ar" },
-  { label: "Czech", value: "/auto/cs" },
-  { label: "Polish", value: "/auto/pl" },
-  { label: "Danish", value: "/auto/da" },
-  { label: "Dutch", value: "/auto/nl" },
-  { label: "Finnish", value: "/auto/fi" },
-  { label: "French", value: "/auto/fr" },
-  { label: "German", value: "/auto/de" },
-  { label: "Greek", value: "/auto/el" },
-  { label: "Hebrew", value: "/auto/he" },
-  { label: "Hungarian", value: "/auto/hu" },
-  { label: "Italian", value: "/auto/it" },
-  { label: "Japanese", value: "/auto/ja" },
-  { label: "Korean", value: "/auto/ko" },
-  { label: "Lithuanian", value: "/auto/lt" },
-  { label: "Norwegian", value: "/auto/no" },
-  { label: "Portuguese", value: "/auto/pt" },
-  { label: "Chinese", value: "/auto/zho" },
-  { label: "Spanish", value: "/auto/es" },
-  { label: "Swedish", value: "/auto/sv" },
-  { label: "Thai", value: "/auto/th" },
-  { label: "Traditional Chinese", value: "/auto/tw" },
-  { label: "Ukrainian", value: "/auto/uk" },
-];
+import styles from "../styles/Navbar.module.css";
+import languages from './languages'
+import TextToSpeech from "./partials/useTextToSpeech";
 
 const GoogleTranslate = () => {
+  const sortedData = languages
+    .slice()
+    .sort((a, b) => a.label.localeCompare(b.label));
+
   const [selected, setSelected] = useState(null);
 
   useEffect(() => {
@@ -53,7 +29,6 @@ const GoogleTranslate = () => {
         pageLanguage: "auto",
         autoDisplay: false,
         showOriginal: false,
-
         layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
       },
       "google_translate_element"
@@ -72,6 +47,13 @@ const GoogleTranslate = () => {
     window.location.reload();
   };
 
+  const customMenuItemRenderer = (label, item) => {
+    const color = "black";
+    const fontSize = "20px";
+
+    return <div style={{ color, fontSize }}>{label}</div>;
+  };
+
   return (
     <>
       <div
@@ -87,13 +69,13 @@ const GoogleTranslate = () => {
       ></div>
       <div className="googleSelectbox">
         <SelectPicker
-          data={languages}
-          style={{ width: 140 }}
+          data={sortedData}
+          renderMenuItem={customMenuItemRenderer}
           placement="bottomEnd"
           cleanable={false}
           value={selected}
           searchable={false}
-          className={"notranslate"}
+          className={styles.languageSelector}
           menuClassName={"notranslate"}
           onSelect={(e, m, evt) => langChange(e, m, evt)}
           placeholder="Language"

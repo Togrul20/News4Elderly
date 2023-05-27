@@ -2,6 +2,7 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 html,
@@ -50,6 +51,15 @@ body > .skiptranslate {
   display: none !important;
 }
 
+/* Hide the original text field */
+.goog-te-banner-text {
+  display: none !important;
+}
+
+.goog-tooltip.skiptranslate {
+  display: none !important;
+}
+
 .goog-te-banner {
   display: none !important;
 }
@@ -76,3 +86,41 @@ body > .skiptranslate {
   color: black;
   font-size: 18px;
 }
+
+#goog-gt-vt {
+  display: none !important;
+  top: 0px !important;
+}
+#goog-gt-votingHiddenPane {
+  display: none !important;
+}
+.goog-tooltip skiptranslate {
+  display: none !important;
+  top: 0px !important;
+}
+.activity-root {
+  display: hide !important;
+}
+.status-message {
+  display: hide !important;
+}
+.started-activity-container {
+  display: hide !important;
+}
+
+.VIpgJd-suEOdc .VIpgJd-yAWNEb-L7lbkb {
+  display: none !important;
+}
+.VIpgJd-suEOdc .VIpgJd-yAWNEb-L7lbkb .skiptranslate {
+  display: none !important;
+}
+.skiptranslate {
+  display: none !important;
+}
+
+.VIpgJd-yAWNEb-hvhgNd,
+.VIpgJd-yAWNEb-hvhgNd-k77Iif-i3jM8c {
+  display: none !important;
+}
+
+

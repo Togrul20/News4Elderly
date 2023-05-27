@@ -13,12 +13,12 @@ import FooterContent from "../partials/FooterContent";
 const cloudinaryName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
 
 export const getStaticPaths = async () => {
-  const res = await fetch("https://inshorts.deta.dev/news?category=science");
+  const res = await fetch("https://inshorts.deta.dev/news?category=technology");
   const result = await res.json();
 
   const paths = result.data.map((el) => {
     return {
-      params: { sciencetitle: el.title },
+      params: { technologytitle: el.title },
     };
   });
 
@@ -29,8 +29,8 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = async (context) => {
-  const title = context.params.sciencetitle;
-  const result = await fetch("https://inshorts.deta.dev/news?category=science");
+  const title = context.params.technologytitle;
+  const result = await fetch("https://inshorts.deta.dev/news?category=technology");
   const data = await result.json();
   const pageData = data.data.filter((news) => news.title === title);
 

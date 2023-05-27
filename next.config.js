@@ -20,6 +20,6 @@ module.exports = nextConfig;
 //   pwa: {
 //     dest: "public",
 //     register: true,
-//     sw: "/sw.js",
+//     skipWaiting: true
 //   },
 // });

@@ -1,0 +1,203 @@
+/*----------------------------- Science news content parts ---------------------*/
+.articleContainer {
+  box-sizing: "border-box";
+  margin: 0;
+  padding: 1px;
+  font-family: "Times New Roman", Times, serif;
+  display: block;
+  position: relative;
+  width: 100vw;
+  background-color: #212121;
+  flex: 1;
+  align-items: "center";
+  justify-content: "center";
+  overflow-y: auto;
+  overflow-x: hidden;
+  /* overflow-x: auto */
+  height: 100vh;
+}
+
+[data-theme="light"] .articleContainer {
+  background-color: white;
+}
+
+.articleContainer::-webkit-scrollbar {
+  width: 0.2rem; /* Adjust the width as needed */
+}
+
+.articleContainer::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.container::-webkit-scrollbar-thumb {
+  background-color: #212121; /* Adjust the color as needed */
+}
+
+.backToBtnContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background: black;
+  width: 100vw;
+}
+
+.backToBtn {
+  background: transparent;
+  outline: none;
+  border: none;
+  color: white;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.articleTitle {
+  border: 3px solid white;
+  color: white;
+  font-size: 35px;
+  margin: 15px 10px 0 10px;
+  padding: 2px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+[data-theme="light"] .articleTitle {
+  border: 3px solid black;
+  color: black;
+}
+
+.publishedTime {
+  display: flex;
+  align-items: center;
+  font-size: 30px;
+  font-weight: bolder;
+  background-color: white;
+  color: black;
+  padding: 2px;
+  margin-top: 20px;
+}
+
+[data-theme="light"] .publishedTime {
+  background-color: black;
+  color: white;
+}
+
+.generalContentContainer {
+  padding: 0;
+  border-radius: 5px;
+  margin: 0 auto;
+  margin-top: 50px;
+  width: 90vw;
+  box-sizing: border-box;
+  background-color: #0e0e0e;
+  border: 4px solid rgb(248, 248, 248);
+}
+
+[data-theme="light"] .generalContentContainer {
+  background-color: black;
+  border: 4px solid rgb(0, 0, 0);
+}
+
+@media (min-width: 768px) {
+  /* styles for screens larger than 768px */
+  .generalContentContainer {
+    max-width: 768px;
+    padding: 0 0px;
+  }
+}
+
+@media (min-width: 992px) {
+  /* styles for screens larger than 992px */
+  .generalContentContainer {
+    max-width: 992px;
+    padding: 0 0px;
+  }
+}
+
+@media (min-width: 1200px) {
+  /* styles for screens larger than 1200px */
+  .generalContentContainer {
+    max-width: 900px;
+    padding: 0 0px;
+  }
+}
+
+.contentImageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  height: auto;
+  object-fit: cover;
+  object-position: bottom;
+  filter: contrast(110%);
+  padding: 5px 5px;
+  margin: 0 auto;
+  cursor: zoom-in;
+  background-color: rgb(255, 255, 255);
+}
+
+.contentImage {
+  width: 100%;
+  height: auto;
+  margin-top: 0;
+  object-fit: cover;
+  border-radius: 15px;
+  opacity: 4;
+  image-rendering: optimizeQuality;
+  image-rendering: crisp-edges;
+  filter: contrast(100%) brightness(100%) saturate(1.5);
+}
+
+@media (min-width: 556px) {
+  .contentImage {
+    width: 100%;
+    height: auto;
+    margin-top: 0;
+    object-fit: cover;
+    border-radius: 15px;
+  }
+}
+
+@media (min-width: 756px) {
+  .contentImage {
+    width: 80%;
+    height: auto;
+    margin-top: 0;
+    object-fit: cover;
+    border-radius: 15px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .contentImage {
+    width: 75%;
+    height: auto;
+    margin-top: 0;
+    object-fit: cover;
+    border-radius: 15px;
+  }
+}
+
+.articleContent {
+  height: auto;
+  width: 100%;
+  color: white;
+  font-size: 25px;
+  line-height: 1.5;
+  margin: 25px 10px 70px 10px;
+  padding-right: 15px;
+}
+
+[data-theme="light"] .articleContent {
+  color: black;
+}
+
+.readMore {
+  background-color: white;
+  color: blue;
+  font-size: 25px;
+  margin-left: 5px;
+  padding: 2px;
+  font-style: italic;
+  text-decoration: underline;
+}

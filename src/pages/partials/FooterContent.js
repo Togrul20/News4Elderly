@@ -3,12 +3,12 @@ import Link from "next/link";
 import HomeIcon from "@mui/icons-material/Home";
 import styles from "../../styles/Footer.module.css";
 
-const Footer = ({ zoomIn, zoomOut }) => {
+const FooterContent = ({ zoomOutArticle, zoomInArticle }) => {
   return (
     <div className={styles.footerContainer}>
       <button
         onClick={(e) => {
-          zoomOut(e);
+          zoomOutArticle(e);
         }}
         className={styles.zoomout}
       >
@@ -22,7 +22,7 @@ const Footer = ({ zoomIn, zoomOut }) => {
       </Link>
       <button
         onClick={(e) => {
-          zoomIn(e);
+          zoomInArticle(e);
         }}
         className={styles.zoomin}
       >
@@ -32,4 +32,4 @@ const Footer = ({ zoomIn, zoomOut }) => {
   );
 };
 
-export default Footer;
+export default FooterContent;

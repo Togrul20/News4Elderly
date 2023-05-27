@@ -9,17 +9,17 @@ import useTextToSpeech from "../partials/useTextToSpeech";
 
 // API
 export const getStaticProps = async () => {
-  const result = await fetch("https://inshorts.deta.dev/news?category=science");
+  const result = await fetch("https://inshorts.deta.dev/news?category=sports");
   const options = await result.json();
 
   return {
-    props: { science: options },
+    props: { sports: options },
   };
 };
 
 const cloudinaryName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
 
-const Science = ({ science }) => {
+const Sports = ({ sports }) => {
   ///// Zoom in and out
   var [fontSize, setFontSize] = useState(30);
   const zoomIn = (e) => {
@@ -31,7 +31,7 @@ const Science = ({ science }) => {
     setFontSize(fontSize - 2);
   };
 
-  const title = science.data.map((el) => {
+  const title = sports.data.map((el) => {
     return el.title;
   });
 
@@ -78,7 +78,7 @@ const Science = ({ science }) => {
         <button onClick={cancelButtonHandle}>Reset</button>
       </div>
 
-      {science.data.map((el) => (
+      {sports.data.map((el) => (
         <div key={el.id} className={styles.generalContainer}>
           <div className={styles.imageContainer}>
             <Image
@@ -95,7 +95,7 @@ const Science = ({ science }) => {
             <span>Published:</span>
             <span>{el.date}</span>
           </div>
-          <Link href={"/science/" + el.title} key={el.id} legacyBehavior>
+          <Link href={"/sports/" + el.title} key={el.id} legacyBehavior>
             <p
               className={styles.newscontentssingle}
               style={{ fontSize: fontSize }}
@@ -115,4 +115,4 @@ const Science = ({ science }) => {
   );
 };
 
-export default Science;
+export default Sports;
