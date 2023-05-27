@@ -22,7 +22,7 @@ const Layout = ({ children }) => {
       router.events.off("routeChangeStart", handleStart);
       router.events.off("routeChangeComplete", handleComplete);
     };
-  }, []);
+  }, [router.events]);
 
   return (
     <div>
