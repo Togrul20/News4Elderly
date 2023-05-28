@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import HomeIcon from "@mui/icons-material/Home";
-import styles from "../../styles/Footer.module.css";
+import styles from "..//styles/Footer.module.css"
 
 const FooterContent = ({ zoomOutArticle, zoomInArticle }) => {
   return (

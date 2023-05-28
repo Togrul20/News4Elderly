@@ -7,7 +7,7 @@ import { Tooltip, Whisper } from "rsuite";
 import { Image } from "cloudinary-react";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import styles from "../../styles/NewsContents.module.css";
-import FooterContent from "../partials/FooterContent";
+import FooterContent from "../../partials/FooterContent";
 
 
 const cloudinaryName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;

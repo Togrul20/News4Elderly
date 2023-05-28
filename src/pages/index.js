@@ -6,7 +6,7 @@ import "rsuite/dist/rsuite.min.css";
 import "../styles/Home.module.css";
 import "../styles/Navbar.module.css";
 import "../styles/NewsContents.module.css";
-import Navbar from "./partials/Navbar";
+import Navbar from "../partials/Navbar";
 
 export default function Home() {
   return (

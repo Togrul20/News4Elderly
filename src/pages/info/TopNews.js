@@ -3,9 +3,9 @@ import Link from "next/link";
 import { Image } from "cloudinary-react";
 import "rsuite/dist/rsuite.min.css";
 import styles from "@/styles/Home.module.css";
-import Footer from "../partials/Footer";
-import Navbar from "../partials/Navbar";
-import useTextToSpeech from "../partials/useTextToSpeech";
+import Footer from "../../partials/Footer";
+import Navbar from "../../partials/Navbar";
+import useTextToSpeech from "../../partials/useTextToSpeech";
 
 export const getStaticProps = async () => {
   const result = await fetch("https://inshorts.deta.dev/news?category");

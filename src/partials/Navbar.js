@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import GoogleTranslate from "../GoogleTranslate";
-import styles from "../../styles/Navbar.module.css";
+import GoogleTranslate from "../pages/GoogleTranslate";
+import styles from "..//styles/Navbar.module.css";  
 import ThemeToggle from "./ThemeToggle";
 
 const Navbar = () => {
