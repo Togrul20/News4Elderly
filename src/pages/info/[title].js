@@ -90,9 +90,9 @@ const Details = ({ context }) => {
       </div>
       <p className={styles.articleContent} style={{ fontSize: fontSize }}>
         {context.content}
-        <Link href={context?.readMoreUrl} className={styles.readMore}>
+        <a href={context?.readMoreUrl} className={styles.readMore}>
           Go to the link of the news
-        </Link>
+        </a>
       </p>
       <FooterContent
         zoomInArticle={zoomInArticle}
