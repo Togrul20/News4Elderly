@@ -6,6 +6,7 @@ import styles from "@/styles/Home.module.css";
 import Footer from "../../partials/Footer";
 import Navbar from "../../partials/Navbar";
 import useTextToSpeech from "../../partials/useTextToSpeech";
+import { convertToSlug } from "@/utils/convertToSlug";
 
 export const getStaticProps = async () => {
   const result = await fetch("https://inshorts.deta.dev/news?category");
@@ -93,7 +94,11 @@ const TopNews = ({ info }) => {
             <span>Published:</span>
             <span>{el.date}</span>
           </div>
-          <Link href={"/info/" + el.title} key={el.id} legacyBehavior>
+          <Link
+            href={"/info/" + convertToSlug(el?.title)}
+            key={el.id}
+            legacyBehavior
+          >
             <p
               className={styles.newscontentssingle}
               style={{ fontSize: fontSize }}
