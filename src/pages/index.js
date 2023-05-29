@@ -20,32 +20,32 @@ export default function Home() {
         </div>
         <h1 className={styles.HomepageHeader}>HomePage</h1>
         <div className={styles.routedPagesContainer}>
-          <Link className={styles.routedPages} href="./info/TopNews">
+          <Link className={styles.routedPages} href="./info/">
             <span>go to</span>
             <ArrowForwardIcon />
             <p>Top News</p>
           </Link>
-          <Link className={styles.routedPages} href="./science/Science">
+          <Link className={styles.routedPages} href="./science/">
             <span>go to</span>
             <ArrowForwardIcon />
             <p>Science News</p>
           </Link>
-          <Link className={styles.routedPages} href="./business/Business">
+          <Link className={styles.routedPages} href="./business/">
             <span>go to</span>
             <ArrowForwardIcon />
             <p>Business News</p>
           </Link>
-          <Link className={styles.routedPages} href="./world/World">
+          <Link className={styles.routedPages} href="./world/">
             <span>go to</span>
             <ArrowForwardIcon />
             <p>World News</p>
           </Link>
-          <Link className={styles.routedPages} href="./sports/Sports">
+          <Link className={styles.routedPages} href="./sports/">
             <span>go to</span>
             <ArrowForwardIcon />
             <p>Sport News</p>
           </Link>
-          <Link className={styles.routedPages} href="./technology/Technology">
+          <Link className={styles.routedPages} href="./technology/">
             <span>go to</span>
             <ArrowForwardIcon />
             <p>Technology News</p>

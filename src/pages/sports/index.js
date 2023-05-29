@@ -10,19 +10,17 @@ import { convertToSlug } from "@/utils/convertToSlug";
 
 // API
 export const getStaticProps = async () => {
-  const result = await fetch(
-    "https://inshorts.deta.dev/news?category=technology"
-  );
+  const result = await fetch("https://inshorts.deta.dev/news?category=sports");
   const options = await result.json();
 
   return {
-    props: { technology: options },
+    props: { sports: options },
   };
 };
 
 const cloudinaryName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
 
-const Technology = ({ technology }) => {
+const Sports = ({ sports }) => {
   ///// Zoom in and out
   var [fontSize, setFontSize] = useState(30);
   const zoomIn = (e) => {
@@ -34,7 +32,7 @@ const Technology = ({ technology }) => {
     setFontSize(fontSize - 2);
   };
 
-  const title = technology.data.map((el) => {
+  const title = sports.data.map((el) => {
     return el.title;
   });
 
@@ -68,7 +66,7 @@ const Technology = ({ technology }) => {
       <div>
         <Navbar />
       </div>
-      <h1 className={styles.pageHeader}>Science News</h1>
+      <h1 className={styles.pageHeader}>Sports News</h1>
 
       <div className={styles.speakBtnContainer}>
         <select value={language} onChange={handleLanguageChange}>
@@ -81,7 +79,7 @@ const Technology = ({ technology }) => {
         <button onClick={cancelButtonHandle}>Reset</button>
       </div>
 
-      {technology.data.map((el) => (
+      {sports.data.map((el) => (
         <div key={el.id} className={styles.generalContainer}>
           <div className={styles.imageContainer}>
             <Image
@@ -99,7 +97,7 @@ const Technology = ({ technology }) => {
             <span>{el.date}</span>
           </div>
           <Link
-            href={"/technology/" + convertToSlug(el?.title)}
+            href={"/sports/" + convertToSlug(el?.title)}
             key={el.id}
             legacyBehavior
           >
@@ -121,4 +119,4 @@ const Technology = ({ technology }) => {
   );
 };
 
-export default Technology;
+export default Sports;

@@ -10,17 +10,17 @@ import { convertToSlug } from "@/utils/convertToSlug";
 
 // API
 export const getStaticProps = async () => {
-  const result = await fetch("https://inshorts.deta.dev/news?category=sports");
+  const result = await fetch("https://inshorts.deta.dev/news?category=world");
   const options = await result.json();
 
   return {
-    props: { sports: options },
+    props: { world: options },
   };
 };
 
 const cloudinaryName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
 
-const Sports = ({ sports }) => {
+const World = ({ world }) => {
   ///// Zoom in and out
   var [fontSize, setFontSize] = useState(30);
   const zoomIn = (e) => {
@@ -32,7 +32,7 @@ const Sports = ({ sports }) => {
     setFontSize(fontSize - 2);
   };
 
-  const title = sports.data.map((el) => {
+  const title = world.data.map((el) => {
     return el.title;
   });
 
@@ -66,7 +66,7 @@ const Sports = ({ sports }) => {
       <div>
         <Navbar />
       </div>
-      <h1 className={styles.pageHeader}>Science News</h1>
+      <h1 className={styles.pageHeader}>World News</h1>
 
       <div className={styles.speakBtnContainer}>
         <select value={language} onChange={handleLanguageChange}>
@@ -79,7 +79,7 @@ const Sports = ({ sports }) => {
         <button onClick={cancelButtonHandle}>Reset</button>
       </div>
 
-      {sports.data.map((el) => (
+      {world.data.map((el) => (
         <div key={el.id} className={styles.generalContainer}>
           <div className={styles.imageContainer}>
             <Image
@@ -96,11 +96,7 @@ const Sports = ({ sports }) => {
             <span>Published:</span>
             <span>{el.date}</span>
           </div>
-          <Link
-            href={"/sports/" + convertToSlug(el?.title)}
-            key={el.id}
-            legacyBehavior
-          >
+          <Link href={"/world/" + convertToSlug(el?.title)} key={el.id}>
             <p
               className={styles.newscontentssingle}
               style={{ fontSize: fontSize }}
@@ -119,4 +115,4 @@ const Sports = ({ sports }) => {
   );
 };
 
-export default Sports;
+export default World;

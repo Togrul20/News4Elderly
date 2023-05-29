@@ -10,17 +10,19 @@ import { convertToSlug } from "@/utils/convertToSlug";
 
 // API
 export const getStaticProps = async () => {
-  const result = await fetch("https://inshorts.deta.dev/news?category=world");
+  const result = await fetch(
+    "https://inshorts.deta.dev/news?category=technology"
+  );
   const options = await result.json();
 
   return {
-    props: { world: options },
+    props: { technology: options },
   };
 };
 
 const cloudinaryName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
 
-const World = ({ world }) => {
+const Technology = ({ technology }) => {
   ///// Zoom in and out
   var [fontSize, setFontSize] = useState(30);
   const zoomIn = (e) => {
@@ -32,7 +34,7 @@ const World = ({ world }) => {
     setFontSize(fontSize - 2);
   };
 
-  const title = world.data.map((el) => {
+  const title = technology.data.map((el) => {
     return el.title;
   });
 
@@ -66,7 +68,7 @@ const World = ({ world }) => {
       <div>
         <Navbar />
       </div>
-      <h1 className={styles.pageHeader}>Science News</h1>
+      <h1 className={styles.pageHeader}>Technology News</h1>
 
       <div className={styles.speakBtnContainer}>
         <select value={language} onChange={handleLanguageChange}>
@@ -79,7 +81,7 @@ const World = ({ world }) => {
         <button onClick={cancelButtonHandle}>Reset</button>
       </div>
 
-      {world.data.map((el) => (
+      {technology.data.map((el) => (
         <div key={el.id} className={styles.generalContainer}>
           <div className={styles.imageContainer}>
             <Image
@@ -96,7 +98,11 @@ const World = ({ world }) => {
             <span>Published:</span>
             <span>{el.date}</span>
           </div>
-          <Link href={"/world/" + convertToSlug(el?.title)} key={el.id}>
+          <Link
+            href={"/technology/" + convertToSlug(el?.title)}
+            key={el.id}
+            legacyBehavior
+          >
             <p
               className={styles.newscontentssingle}
               style={{ fontSize: fontSize }}
@@ -115,4 +121,4 @@ const World = ({ world }) => {
   );
 };
 
-export default World;
+export default Technology;
