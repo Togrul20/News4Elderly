@@ -6,6 +6,7 @@ import styles from "@/styles/Home.module.css";
 import Footer from "../../partials/Footer";
 import Navbar from "../../partials/Navbar";
 import useTextToSpeech from "../../partials/useTextToSpeech";
+import { convertToSlug } from "@/utils/convertToSlug";
 
 // API
 export const getStaticProps = async () => {
@@ -95,11 +96,14 @@ const Sports = ({ sports }) => {
             <span>Published:</span>
             <span>{el.date}</span>
           </div>
-          <Link href={"/sports/" + el.title} key={el.id} legacyBehavior>
+          <Link
+            href={"/sports/" + convertToSlug(el?.title)}
+            key={el.id}
+            legacyBehavior
+          >
             <p
               className={styles.newscontentssingle}
               style={{ fontSize: fontSize }}
-    
             >
               {el.title}
 

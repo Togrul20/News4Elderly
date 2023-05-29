@@ -8,7 +8,7 @@ import { Image } from "cloudinary-react";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import styles from "../../styles/NewsContents.module.css";
 import FooterContent from "../../partials/FooterContent";
-
+import { convertToSlug } from "@/utils/convertToSlug";
 
 const cloudinaryName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
 
@@ -18,7 +18,7 @@ export const getStaticPaths = async () => {
 
   const paths = result.data.map((el) => {
     return {
-      params: { sciencetitle: el.title },
+      params: { sciencetitle: convertToSlug(el.title) },
     };
   });
 
@@ -32,10 +32,12 @@ export const getStaticProps = async (context) => {
   const title = context.params.sciencetitle;
   const result = await fetch("https://inshorts.deta.dev/news?category=science");
   const data = await result.json();
-  const pageData = data.data.filter((news) => news.title === title);
+  const pageData = data.data.find(
+    (news) => convertToSlug(news.title) === title
+  );
 
   return {
-    props: { context: pageData[0] },
+    props: { context: pageData },
   };
 };
 
@@ -89,9 +91,9 @@ const Details = ({ context }) => {
       </div>
       <p className={styles.articleContent} style={{ fontSize: fontSize }}>
         {context.content}
-      <Link href={context.readMoreUrl} className={styles.readMore}>
-        Go to the link of the news
-      </Link>
+        <a href={context?.readMoreUrl} className={styles.readMore}>
+          Go to the link of the news
+        </a>
       </p>
       <FooterContent
         zoomInArticle={zoomInArticle}
