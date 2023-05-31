@@ -5,7 +5,7 @@ import "rsuite/dist/rsuite.min.css";
 import styles from "@/styles/Home.module.css";
 import Footer from "../../partials/Footer";
 import Navbar from "../../partials/Navbar";
-import useTextToSpeech from "../../partials/useTextToSpeech";
+import TTXButtons from "@/partials/TTXButtons";
 import { convertToSlug } from "@/utils/convertToSlug";
 
 // API
@@ -36,31 +36,6 @@ const World = ({ world }) => {
     return el.title;
   });
 
-  // TTS
-  const [language, setLanguage] = useState("en");
-  const {
-    speechSynthesisSupported,
-    speakText,
-    pauseText,
-    resumeText,
-    cancelText,
-  } = useTextToSpeech();
-  const speakButtonHandle = () => {
-    speakText(title, language);
-  };
-  const pauseButtonHandle = () => {
-    pauseText(title, language);
-  };
-  const resumeButtonHandle = () => {
-    resumeText(title, language);
-  };
-  const cancelButtonHandle = () => {
-    cancelText(title, language);
-  };
-  const handleLanguageChange = (e) => {
-    setLanguage(e.target.value);
-  };
-
   return (
     <div className={styles.sciencestyle}>
       <div>
@@ -68,16 +43,7 @@ const World = ({ world }) => {
       </div>
       <h1 className={styles.pageHeader}>World News</h1>
 
-      <div className={styles.speakBtnContainer}>
-        <select value={language} onChange={handleLanguageChange}>
-          <option value="en">English</option>
-          <option value="ru">Russian</option>
-        </select>
-        <button onClick={speakButtonHandle}>Speak</button>
-        <button onClick={resumeButtonHandle}>Resume</button>
-        <button onClick={pauseButtonHandle}>Pause</button>
-        <button onClick={cancelButtonHandle}>Reset</button>
-      </div>
+      <TTXButtons title={title}/>
 
       {world.data.map((el) => (
         <div key={el.id} className={styles.generalContainer}>

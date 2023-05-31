@@ -1,5 +1,4 @@
-/* Tablet and Smaller Desktop 701-1120 */
-/*Mobile*/
+/*-------------------------------------------CONTENTS-------------------------------*/
 
 .newscontents {
   text-decoration: none;
@@ -26,6 +25,13 @@
 .dateTimeContainer span:nth-last-child(1) {
   margin-left: 12px;
   margin-bottom: 6px;
+}
+
+@media (max-width: 450px) {
+  .dateTimeContainer span {
+    font-size: 16px;
+    text-align: center;
+  }
 }
 
 [data-theme="dark"] .dateTimeContainer {
@@ -128,6 +134,8 @@
   visibility: visible;
 }
 
+/*--------------------------------------CONTAINERS--------------------------------*/
+
 .sciencestyle {
   flex: 1;
   align-items: "center";
@@ -220,7 +228,7 @@
     padding: 0 0px;
   }
 }
-
+/*-----------------------------------------PAGE HEADER-----------------------*/
 .pageHeader {
   color: white;
   font-size: 40px;
@@ -248,28 +256,7 @@
   margin: 36px 0 20px 0;
 }
 
-.speakBtnContainer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-}
-
-.speakBtnContainer button {
-  background-color: white;
-  color: black;
-  font-size: 25px;
-  font-weight: bolder;
-  padding: 3px;
-  margin: 0px 5px;
-  border-radius: 5px;
-}
-
-[data-theme="light"] .speakBtnContainer button {
-  background-color: black;
-  color: white;
-}
-
+/*----------------------------------IMAGES----------------------------------------*/
 .imageContainer {
   display: flex;
   justify-content: center;
@@ -342,7 +329,7 @@
 
 @media (min-width: 756px) {
   .imageitslef {
-    width: 80%;
+    width: 70%;
     height: auto;
     margin-top: 0;
     object-fit: cover;
@@ -352,10 +339,90 @@
 
 @media (min-width: 1200px) {
   .imageitslef {
-    width: 75%;
+    width: 60%;
     height: auto;
     margin-top: 0;
     object-fit: cover;
     border-radius: 15px;
   }
+}
+
+/*--------------------------------TEXT TO SPEECH--------------------------*/
+.speakBtnContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.speakBtnContainer button {
+  background-color: white;
+  color: black;
+  font-size: 25px;
+  font-weight: bolder;
+  padding: 3px;
+  margin: 0px 5px;
+  border-radius: 5px;
+}
+.speakLanguage {
+  color: black;
+  font-size: 30px;
+  border: 2px solid black;
+}
+
+@media (max-width: 520px) {
+  .speakBtnContainer {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+    background-color: black;
+    width: auto;
+  }
+
+  .speakBtnContainer button {
+    margin-top: 0.5rem;
+    font-size: 20px;
+    border: 2px solid white;
+  }
+
+  .speakLanguage {
+    font-size: 20px;
+    position: absolute;
+    top: 170px;
+  }
+}
+
+[data-theme="light"] .speakBtnContainer button {
+  background-color: black;
+  color: white;
+}
+
+.ttxModal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 2px;
+  font-size: 25px;
+  font-weight: bolder;
+  color: black;
+}
+
+.ttxModal button {
+  border: 2px solid black;
+  border-radius: 10px;
+  padding: 2px;
+}
+
+.feedback_text{
+  color: white;
+  padding-left: 0.2rem;
+  font-size: 20px;
+  font-weight: bolder;
+  text-align: center;
+}
+
+[data-theme="light"] .feedback_text{
+  color: black;
 }

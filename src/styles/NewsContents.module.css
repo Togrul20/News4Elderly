@@ -76,6 +76,12 @@
   margin-top: 20px;
 }
 
+@media (max-width:400px){
+  .publishedTime{
+    font-size: 22px;
+  }
+}
+
 [data-theme="light"] .publishedTime {
   background-color: black;
   color: white;

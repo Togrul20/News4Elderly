@@ -85,7 +85,6 @@ const ThemeToggle = () => {
         padding: 0,
         color: "white",
         fontWeight: "bolder",
-        fontWeight: "bolder",
       }}
     >
       <FormGroup

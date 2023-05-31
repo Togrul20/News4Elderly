@@ -39,17 +39,13 @@
     font-size: 15px;
   }
 }
-.topnewslink::before {
-  content: "⬅️";
-  width: fit-content;
-  height: max-content;
-}
+
 
 /*-----------------Language SelectPicker------------------*/
 
 @media (max-width:400px){
   .languageSelector {
-    width: 150px;
+    width: 110px;
     color: black;
     font-weight: bolder;
   }
