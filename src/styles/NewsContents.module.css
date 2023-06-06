@@ -1,4 +1,4 @@
-/*----------------------------- Science news content parts ---------------------*/
+/*----------------------------- news content parts ---------------------*/
 .articleContainer {
   box-sizing: "border-box";
   margin: 0;
@@ -48,6 +48,7 @@
   color: white;
   font-size: 25px;
   cursor: pointer;
+
 }
 
 .articleTitle {
@@ -76,8 +77,8 @@
   margin-top: 20px;
 }
 
-@media (max-width:400px){
-  .publishedTime{
+@media (max-width: 400px) {
+  .publishedTime {
     font-size: 22px;
   }
 }
@@ -191,7 +192,7 @@
   font-size: 25px;
   line-height: 1.5;
   margin: 25px 10px 70px 10px;
-  padding-right: 15px;
+  padding: 5px 20px;
 }
 
 [data-theme="light"] .articleContent {

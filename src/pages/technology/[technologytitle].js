@@ -8,7 +8,7 @@ import { Image } from "cloudinary-react";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import styles from "../../styles/NewsContents.module.css";
 import FooterContent from "../../partials/FooterContent";
-import Navbar from "@/partials/Navbar";
+import GoogleTranslate from "../GoogleTranslate";
 import { convertToSlug } from "@/utils/convertToSlug";
 
 const cloudinaryName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
@@ -66,6 +66,9 @@ const Details = ({ context }) => {
         <button className={styles.backToBtn} onClick={goBack}>
           Go back
         </button>
+        <div style={{position:"absolute", right:0}}>
+           <GoogleTranslate />
+        </div>
       </div>
       <h1 className={styles.articleTitle}>{context.title}</h1>
       <div className={styles.generalContentContainer}>

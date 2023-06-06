@@ -64,7 +64,7 @@ const InstallPrompt = () => {
           border: "2px solid white",
           borderRadius: 10,
           fontSize: "25px",
-          padding: "5px",
+          padding: "5px 10px",
         }}
       >
         Install the App

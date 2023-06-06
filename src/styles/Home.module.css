@@ -12,9 +12,8 @@
   background-color: white;
   color: black;
   border: 2px solid black;
-  text-decoration: underline;
   font-style: italic;
-  font-size: 22px;
+  font-size: 25px;
 }
 
 .dateTimeContainer span:nth-last-child(2) {
@@ -27,11 +26,17 @@
   margin-bottom: 6px;
 }
 
-@media (max-width: 450px) {
+@media (max-width: 400px) {
   .dateTimeContainer span {
-    font-size: 16px;
+    font-size: 18px;
     text-align: center;
   }
+}
+
+@media (max-width: 320px) {
+  .dateTimeContainer span{
+    font-size: 15px;
+  };
 }
 
 [data-theme="dark"] .dateTimeContainer {
@@ -144,7 +149,7 @@
   background-color: #212121;
   overflow: "hidden";
   height: 100%;
-  margin-bottom: 40px;
+  margin-bottom: 50px;
 }
 
 [data-theme="dark"] .sciencestyle {
@@ -361,7 +366,7 @@
   color: black;
   font-size: 25px;
   font-weight: bolder;
-  padding: 3px;
+  padding: 2px 4px;
   margin: 0px 5px;
   border-radius: 5px;
 }
@@ -412,10 +417,10 @@
 .ttxModal button {
   border: 2px solid black;
   border-radius: 10px;
-  padding: 2px;
+  padding: 3px 6px;
 }
 
-.feedback_text{
+.feedback_text {
   color: white;
   padding-left: 0.2rem;
   font-size: 20px;
@@ -423,6 +428,6 @@
   text-align: center;
 }
 
-[data-theme="light"] .feedback_text{
+[data-theme="light"] .feedback_text {
   color: black;
 }

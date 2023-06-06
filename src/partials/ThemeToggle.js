@@ -3,6 +3,7 @@ import { styled } from "@mui/material/styles";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
+import styles from "../styles/Navbar.module.css";
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   width: 62,
@@ -39,6 +40,8 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
       top: 0,
       backgroundRepeat: "no-repeat",
       backgroundPosition: "center",
+      border: "2px solid white",
+      borderRadius: "50%",
       backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 20 20"><path fill="${encodeURIComponent(
         "#fff"
       )}" d="M9.305 1.667V3.75h1.389V1.667h-1.39zm-4.707 1.95l-.982.982L5.09 6.072l.982-.982-1.473-1.473zm10.802 0L13.927 5.09l.982.982 1.473-1.473-.982-.982zM10 5.139a4.872 4.872 0 00-4.862 4.86A4.872 4.872 0 0010 14.862 4.872 4.872 0 0014.86 10 4.872 4.872 0 0010 5.139zm0 1.389A3.462 3.462 0 0113.471 10a3.462 3.462 0 01-3.473 3.472A3.462 3.462 0 016.527 10 3.462 3.462 0 0110 6.528zM1.665 9.305v1.39h2.083v-1.39H1.666zm14.583 0v1.39h2.084v-1.39h-2.084zM5.09 13.928L3.616 15.4l.982.982 1.473-1.473-.982-.982zm9.82 0l-.982.982 1.473 1.473.982-.982-1.473-1.473zM9.305 16.25v2.083h1.389V16.25h-1.39z"/></svg>')`,
@@ -80,32 +83,24 @@ const ThemeToggle = () => {
   return (
     <div
       style={{
-        fontSize: 20,
         flex: 1,
         padding: 0,
         color: "white",
         fontWeight: "bolder",
       }}
     >
-      <FormGroup
-        sx={{
-          border: "2px solid white",
-          boxSizing: "border-box",
-          width: "max-content",
-          height:"40px",
-          "@media (max-width: 420px)": {
-             width:"max-content",
-             fontSize:2
-          },
-        }}
-      >
-        <FormControlLabel
-          control={<MaterialUISwitch sx={{ ml: 1, fontSize:5 }} defaultChecked />}
-          label={modeBtn}
-          checked={isDarkMode}
-          onChange={toggleTheme}
-        />
-      </FormGroup>
+      <div className={styles.formGroupContainer}>
+        <FormGroup>
+          <div className={styles.modeChangerContainer}>
+            <FormControlLabel
+              control={<MaterialUISwitch sx={{ ml: 1 }} defaultChecked />}
+              checked={isDarkMode}
+              onChange={toggleTheme}
+            />
+            <p className={styles.spn}>{modeBtn}</p>
+          </div>
+        </FormGroup>
+      </div>
     </div>
   );
 };

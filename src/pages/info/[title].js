@@ -8,15 +8,20 @@ import { Image } from "cloudinary-react";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import styles from "../../styles/NewsContents.module.css";
 import FooterContent from "../../partials/FooterContent";
+import GoogleTranslate from "../GoogleTranslate";
 import { convertToSlug } from "@/utils/convertToSlug";
+import TextToSpeechButton from "@/partials/TextToSpeechButton";
 
 const cloudinaryName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
 
 export const getStaticPaths = async () => {
-  const res = await fetch("https://inshorts.deta.dev/news?category");
+  const res = await fetch(
+    "https://newsapi.org/v2/everything?apiKey=fdc99d62d5124eac8f3fb6d95762fb61&q=general"
+  );
   const result = await res.json();
+  console.log(result);
 
-  const paths = result.data.map((el) => {
+  const paths = result.articles.map((el) => {
     return {
       params: { title: convertToSlug(el.title) },
     };
@@ -30,9 +35,11 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async (context) => {
   const title = context.params.title;
-  const result = await fetch("https://inshorts.deta.dev/news?category");
+  const result = await fetch(
+    "https://newsapi.org/v2/everything?apiKey=fdc99d62d5124eac8f3fb6d95762fb61&q=general"
+  );
   const data = await result.json();
-  const pageData = data.data.find(
+  const pageData = data.articles.find(
     (news) => convertToSlug(news.title) === title
   );
 
@@ -62,8 +69,12 @@ const Details = ({ context }) => {
         <button className={styles.backToBtn} onClick={goBack}>
           Go back
         </button>
+        <div style={{ position: "absolute", right: 0 }}>
+          <GoogleTranslate />
+        </div>
       </div>
       <h1 className={styles.articleTitle}>{context.title}</h1>
+      <TextToSpeechButton />
       <div className={styles.generalContentContainer}>
         <div className={styles.contentImageContainer}>
           <Whisper
@@ -74,7 +85,7 @@ const Details = ({ context }) => {
           >
             <Image
               className={styles.contentImage}
-              src={context.imageUrl}
+              src={context.urlToImage}
               cloudName={cloudinaryName}
               width={150}
               height={150}
@@ -86,11 +97,11 @@ const Details = ({ context }) => {
       </div>
       <div className={styles.publishedTime}>
         <p>Published: </p>
-        <span>{context.time}</span>
+        <span>{context.publishedAt}</span>
       </div>
       <p className={styles.articleContent} style={{ fontSize: fontSize }}>
         {context.content}
-        <a href={context?.readMoreUrl} className={styles.readMore}>
+        <a href={context?.url} className={styles.readMore}>
           Go to the link of the news
         </a>
       </p>

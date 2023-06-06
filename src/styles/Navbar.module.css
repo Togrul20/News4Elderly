@@ -12,6 +12,8 @@
   color: rgb(255, 255, 255);
   font-weight: bolder;
   font-size: 20px;
+  margin-right: 5px;
+  text-transform: capitalize;
 }
 .topnewslink {
   font-size: 20px;
@@ -22,7 +24,7 @@
 }
 @media (min-width: 650px) {
   .topnewsbackbtn p {
-    font-size: 25px;
+    font-size: 20px;
   }
 }
 @media (max-width: 600px) {
@@ -34,24 +36,28 @@
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 470px) {
   .topnewsbackbtn p {
     font-size: 15px;
   }
 }
 
-
 /*-----------------Language SelectPicker------------------*/
 
-@media (max-width:400px){
+.languageSelector{
+  float: right;
+  text-transform: capitalize;
+}
+
+@media (max-width: 400px) {
   .languageSelector {
-    width: 110px;
+    width: 100px;
     color: black;
     font-weight: bolder;
   }
 }
 
-@media (min-width: 402px){
+@media (min-width: 402px) {
   .languageSelector {
     width: 200px;
     color: black;
@@ -59,10 +65,55 @@
   }
 }
 
-@media (min-width: 600px){
+@media (min-width: 600px) {
   .languageSelector {
     width: 350px;
     color: black;
     font-weight: bolder;
+  }
+}
+
+/*-------------------Mode Changer---------------------*/
+.formGroupContainer{
+  border: 2px solid white;
+  width: 14rem;
+}
+
+@media (max-width:470px){
+  .formGroupContainer{
+    width: 10rem;
+  }
+}
+
+@media (max-width:311px){
+  .formGroupContainer{
+    width: 9rem;
+  }
+
+  .topnewsbackbtn p{
+    font-size: 12px;
+  }
+}
+
+
+.modeChangerContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: max-content;
+  height: auto;
+  box-sizing: "border-box";
+  
+}
+
+.spn {
+  display: block;
+  position: absolute;
+  left: 3.6rem;
+}
+
+@media (max-width: 300px){
+  .spn{
+    font-size: 10px;
   }
 }

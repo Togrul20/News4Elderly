@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Link from "next/link";
 import HomeIcon from "@mui/icons-material/Home";
 import styles from "..//styles/Footer.module.css";
+import ZoomInIcon from "@mui/icons-material/ZoomIn";
+import ZoomOutIcon from "@mui/icons-material/ZoomOut";
 
 const Footer = ({ zoomIn, zoomOut }) => {
   return (
@@ -12,6 +14,7 @@ const Footer = ({ zoomIn, zoomOut }) => {
         }}
         className={styles.zoomout}
       >
+        <ZoomOutIcon sx={{ fontSize: "2rem" }} />
         Zoom out
       </button>
       <Link href="/">
@@ -26,6 +29,7 @@ const Footer = ({ zoomIn, zoomOut }) => {
         }}
         className={styles.zoomin}
       >
+        <ZoomInIcon sx={{ fontSize: "2rem"}}/>
         Zoom in
       </button>
     </div>

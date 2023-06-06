@@ -10,7 +10,7 @@ import { convertToSlug } from "@/utils/convertToSlug";
 
 // API
 export const getStaticProps = async () => {
-  const result = await fetch("https://inshorts.deta.dev/news?category=science");
+  const result = await fetch("https://newsdata.io/api/1/news?apikey=pub_23985ea1af741f1180f683b9020e5934e690e&q=science&category=science");
   const options = await result.json();
 
   return {
@@ -32,7 +32,7 @@ const Science = ({ science }) => {
     setFontSize(fontSize - 2);
   };
 
-  const title = science.data.map((el) => {
+  const title = science.results.map((el) => {
     return el.title;
   });
 
@@ -45,12 +45,12 @@ const Science = ({ science }) => {
 
       <TTXButtons title={title} />
 
-      {science.data.map((el) => (
+      {science.results.map((el) => (
         <div key={el.id} className={styles.generalContainer}>
           <div className={styles.imageContainer}>
             <Image
               className={styles.imageitslef}
-              src={el.imageUrl}
+              src={el.image_url}
               cloudName={cloudinaryName}
               width={150}
               height={150}
@@ -60,7 +60,7 @@ const Science = ({ science }) => {
           </div>
           <div className={styles.dateTimeContainer}>
             <span>Published:</span>
-            <span>{el.date}</span>
+            <span>{el.pubDate}</span>
           </div>
           <Link
             href={"/science/" + convertToSlug(el?.title)}

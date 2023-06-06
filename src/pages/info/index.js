@@ -8,8 +8,11 @@ import Navbar from "../../partials/Navbar";
 import TTXButtons from "@/partials/TTXButtons";
 import { convertToSlug } from "@/utils/convertToSlug";
 
+
 export const getStaticProps = async () => {
-  const result = await fetch("https://inshorts.deta.dev/news?category");
+  const result = await fetch(
+    "https://newsapi.org/v2/everything?apiKey=fdc99d62d5124eac8f3fb6d95762fb61&q=general"
+  );
   const options = await result.json();
 
   return {
@@ -30,10 +33,9 @@ const TopNews = ({ info }) => {
     setFontSize(fontSize - 2);
   };
 
-  const title = info.data.map((el) => {
+  const title = info.articles.map((el) => {
     return el.title;
   });
-
 
   return (
     <div className={styles.sciencestyle}>
@@ -44,12 +46,12 @@ const TopNews = ({ info }) => {
 
       <TTXButtons title={title} />
 
-      {info.data.map((el) => (
-        <div key={el.id} className={styles.generalContainer}>
+      {info.articles.map((el) => (
+        <div key={el.title} className={styles.generalContainer}>
           <div className={styles.imageContainer}>
             <Image
               className={styles.imageitslef}
-              src={el.imageUrl}
+              src={el.urlToImage}
               cloudName={cloudinaryName}
               width={150}
               height={150}
@@ -59,7 +61,7 @@ const TopNews = ({ info }) => {
           </div>
           <div className={styles.dateTimeContainer}>
             <span>Published:</span>
-            <span>{el.date}</span>
+            <span>{el.publishedAt}</span>
           </div>
           <Link
             href={"/info/" + convertToSlug(el?.title)}

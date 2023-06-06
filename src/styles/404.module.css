@@ -1,0 +1,60 @@
+.errorContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+}
+
+.errorContainer h1 {
+  font-size: 5rem;
+}
+
+.errorContainer h2 {
+  font-size: 4rem;
+  color: red;
+  padding-top: 1rem;
+}
+
+.errorLinkContainer {
+  display: flex;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.errorLinkContainer p {
+  font-size: 2rem;
+  padding-right: 0.5rem;
+}
+
+.errorLinkContainer .errorLink {
+  color: blue;
+  font-size: 2rem;
+}
+
+@media (max-width: 790px) {
+  .errorContainer h1 {
+    font-size: 3rem;
+  }
+  .errorContainer h2 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .errorContainer h1 {
+    font-size: 3rem;
+  }
+  .errorContainer h2 {
+    font-size: 1.5rem;
+  }
+
+  .errorLinkContainer p {
+    font-size: 1.5rem;
+  }
+
+  .errorLinkContainer .errorLink {
+    font-size: 1.5rem;
+  }
+}

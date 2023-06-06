@@ -1,26 +1,17 @@
 import Link from "next/link";
-import Image from "next/image";
-import { useEffect } from "react";
-import { useRouter } from "next/router";
+import styles from "../styles/404.module.css";
 
 const NotFound = () => {
-  const router = useRouter();
-
-  const goBack = () => {
-    router.push("/");
-  };
-
   return (
-    <div>
+    <div className={styles.errorContainer}>
       <h1>Oooops...</h1>
       <h2>That page cannot be found</h2>
-      <p>
-        Go back to the{" "}
-        <Link className="not-found" href="/">
+      <div className={styles.errorLinkContainer}>
+        <p>Go back to the</p>
+        <Link className={styles.errorLink} href="/">
           HomePage
         </Link>
-      </p>
-      <button onClick={goBack}>Go back to homepage</button>
+      </div>
     </div>
   );
 };

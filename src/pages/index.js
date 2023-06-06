@@ -9,6 +9,7 @@ import "../styles/NewsContents.module.css";
 import Navbar from "../partials/Navbar";
 import InstallPrompt from "@/partials/InstallPrompt";
 import RefreshOnScrollUp from "@/partials/RefreshOnScrollUp";
+import Guideline from "@/partials/Guideline";
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
         </div>
         <InstallPrompt />
         <h1 className={styles.HomepageHeader}>HomePage</h1>
+        <Guideline />
         <div className={styles.routedPagesContainer}>
           <Link className={styles.routedPages} href="./info/">
             <span>go to</span>
