@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Router, useRouter } from "next/router";
 import Link from "next/link";
 import "rsuite/dist/rsuite.min.css";
@@ -16,7 +16,7 @@ const cloudinaryName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
 
 export const getStaticPaths = async () => {
   const res = await fetch(
-    "https://newsapi.org/v2/everything?apiKey=fdc99d62d5124eac8f3fb6d95762fb61&q=general"
+    `https://newsapi.org/v2/top-headlines?country=us&apiKey=${process.env.NEWSAPI_KEY}`
   );
   const result = await res.json();
   console.log(result);
@@ -36,7 +36,7 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async (context) => {
   const title = context.params.title;
   const result = await fetch(
-    "https://newsapi.org/v2/everything?apiKey=fdc99d62d5124eac8f3fb6d95762fb61&q=general"
+    `https://newsapi.org/v2/top-headlines?country=us&apiKey=${process.env.NEWSAPI_KEY}`
   );
   const data = await result.json();
   const pageData = data.articles.find(
@@ -62,6 +62,8 @@ const Details = ({ context }) => {
   const goBack = () => {
     router.back();
   };
+
+  const targetElement = useRef(null);
   return (
     <div className={styles.articleContainer}>
       <div className={styles.backToBtnContainer}>
@@ -74,7 +76,7 @@ const Details = ({ context }) => {
         </div>
       </div>
       <h1 className={styles.articleTitle}>{context.title}</h1>
-      <TextToSpeechButton />
+      <TextToSpeechButton targetElement={targetElement}/>
       <div className={styles.generalContentContainer}>
         <div className={styles.contentImageContainer}>
           <Whisper
@@ -99,7 +101,11 @@ const Details = ({ context }) => {
         <p>Published: </p>
         <span>{context.publishedAt}</span>
       </div>
-      <p className={styles.articleContent} style={{ fontSize: fontSize }}>
+      <p
+        className={styles.articleContent}
+        style={{ fontSize: fontSize }}
+        ref={targetElement}
+      >
         {context.content}
         <a href={context?.url} className={styles.readMore}>
           Go to the link of the news

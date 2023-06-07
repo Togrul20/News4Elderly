@@ -11,7 +11,7 @@ import { convertToSlug } from "@/utils/convertToSlug";
 
 export const getStaticProps = async () => {
   const result = await fetch(
-    "https://newsapi.org/v2/everything?apiKey=fdc99d62d5124eac8f3fb6d95762fb61&q=general"
+    `https://newsapi.org/v2/top-headlines?country=us&apiKey=${process.env.NEWSAPI_KEY}`
   );
   const options = await result.json();
 
