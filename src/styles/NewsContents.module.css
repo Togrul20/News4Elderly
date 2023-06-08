@@ -48,7 +48,12 @@
   color: white;
   font-size: 25px;
   cursor: pointer;
+}
 
+@media (max-width:600px){
+  .backToBtn{
+    font-size: 1.2rem;
+  }
 }
 
 .articleTitle {
@@ -59,6 +64,18 @@
   padding: 2px;
   line-height: 1.5;
   text-align: center;
+}
+
+@media (max-width:500px){
+  .articleTitle{
+    font-size: 2rem;
+  }
+}
+
+@media (max-width:330px){
+  .articleTitle{
+    font-size: 1.5rem;
+  }
 }
 
 [data-theme="light"] .articleTitle {
@@ -79,7 +96,7 @@
 
 @media (max-width: 400px) {
   .publishedTime {
-    font-size: 22px;
+    font-size: 1rem;
   }
 }
 
@@ -190,9 +207,9 @@
   width: 100%;
   color: white;
   font-size: 25px;
-  line-height: 1.5;
+  line-height: 2;
   margin: 25px 10px 70px 10px;
-  padding: 5px 20px;
+  padding: 5px 10px;
 }
 
 [data-theme="light"] .articleContent {

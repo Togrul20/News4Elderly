@@ -5,16 +5,17 @@ import Link from "next/link";
 import "rsuite/dist/rsuite.min.css";
 import { Tooltip, Whisper } from "rsuite";
 import { Image } from "cloudinary-react";
+import { CldImage } from 'next-cloudinary';
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import styles from "../../styles/NewsContents.module.css";
 import FooterContent from "../../partials/FooterContent";
 import GoogleTranslate from "../GoogleTranslate";
 import { convertToSlug } from "@/utils/convertToSlug";
 
-const cloudinaryName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
+const cloudinaryName = process.env.CLOUDINARY_CLOUD_NAME;
 
 export const getStaticPaths = async () => {
-  const res = await fetch(`https://newsdata.io/api/1/news?apikey=${process.env.NEWSDATA_KEY}&q=science&category=science`);
+  const res = await fetch(`https://newsdata.io/api/1/news?apikey=${process.env.NEWSDATA_KEY}&country=az,us,tr,ru,in&category=science`);
   const result = await res.json();
 
   const paths = result.results.map((el) => {
@@ -31,7 +32,7 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async (context) => {
   const title = context.params.sciencetitle;
-  const result = await fetch(`https://newsdata.io/api/1/news?apikey=${process.env.NEWSDATA_KEY}&q=science&category=science`);
+  const result = await fetch(`https://newsdata.io/api/1/news?apikey=${process.env.NEWSDATA_KEY}&country=az,us,tr,ru,in&category=science`);
   const data = await result.json();
   const pageData = data.results.find(
     (news) => convertToSlug(news.title) === title

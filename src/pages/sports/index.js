@@ -10,7 +10,7 @@ import { convertToSlug } from "@/utils/convertToSlug";
 
 // API
 export const getStaticProps = async () => {
-  const result = await fetch("https://inshorts.deta.dev/news?category=sports");
+  const result = await fetch(`https://newsdata.io/api/1/news?apikey=${process.env.NEWSDATA_KEY}&country=az,us,tr,ru,in&category=sports`);
   const options = await result.json();
 
   return {
@@ -18,7 +18,7 @@ export const getStaticProps = async () => {
   };
 };
 
-const cloudinaryName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
+const cloudinaryName = process.env.CLOUDINARY_CLOUD_NAME;
 
 const Sports = ({ sports }) => {
   ///// Zoom in and out
@@ -32,7 +32,7 @@ const Sports = ({ sports }) => {
     setFontSize(fontSize - 2);
   };
 
-  const title = sports.data.map((el) => {
+  const title = sports.results.map((el) => {
     return el.title;
   });
 
@@ -47,13 +47,12 @@ const Sports = ({ sports }) => {
 
       <TTXButtons title={title}/>
 
-
-      {sports.data.map((el) => (
+      {sports.results.map((el) => (
         <div key={el.id} className={styles.generalContainer}>
           <div className={styles.imageContainer}>
             <Image
               className={styles.imageitslef}
-              src={el.imageUrl}
+              src={el.image_url}
               cloudName={cloudinaryName}
               width={150}
               height={150}
@@ -63,7 +62,7 @@ const Sports = ({ sports }) => {
           </div>
           <div className={styles.dateTimeContainer}>
             <span>Published:</span>
-            <span>{el.date}</span>
+            <span>{el.pubDate}</span>
           </div>
           <Link
             href={"/sports/" + convertToSlug(el?.title)}

@@ -20,7 +20,7 @@ export const getStaticProps = async () => {
   };
 };
 
-const cloudinaryName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
+const cloudinaryName = process.env.CLOUDINARY_CLOUD_NAME;
 
 const TopNews = ({ info }) => {
   var [fontSize, setFontSize] = useState(30);

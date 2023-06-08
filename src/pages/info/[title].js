@@ -1,7 +1,5 @@
-import axios from "axios";
 import { useState, useEffect, useRef } from "react";
 import { Router, useRouter } from "next/router";
-import Link from "next/link";
 import "rsuite/dist/rsuite.min.css";
 import { Tooltip, Whisper } from "rsuite";
 import { Image } from "cloudinary-react";
@@ -12,7 +10,7 @@ import GoogleTranslate from "../GoogleTranslate";
 import { convertToSlug } from "@/utils/convertToSlug";
 import TextToSpeechButton from "@/partials/TextToSpeechButton";
 
-const cloudinaryName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
+const cloudinaryName = process.env.CLOUDINARY_CLOUD_NAME;
 
 export const getStaticPaths = async () => {
   const res = await fetch(
@@ -64,6 +62,7 @@ const Details = ({ context }) => {
   };
 
   const targetElement = useRef(null);
+  
   return (
     <div className={styles.articleContainer}>
       <div className={styles.backToBtnContainer}>

@@ -19,11 +19,24 @@
   text-decoration: none;
   font-weight: bolder;
   padding: 0 10px;
-  font-size: 15px;
+  font-size: 25px;
   text-align: center;
   display: block;
   transform: scale(0.9);
 }
+
+@media (max-width:850px){
+  .footerBtn{
+    font-size: 18px;
+  }
+}
+
+@media (max-width:360px){
+  .footerBtn{
+    font-size: 12px;
+  }
+}
+
 
 .homeLogo {
   text-align: center;
@@ -38,7 +51,7 @@
 .zoomout {
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
   width: fit-content;
   padding: 3px 6px;
   margin-bottom:2px;
@@ -64,6 +77,7 @@
   .zoomin,
   .zoomout {
     width: fit-content;
+    font-size:20px;
   }
 }
 
@@ -71,7 +85,7 @@
   .zoomin,
   .zoomout {
     width: fit-content;
-    font-size: 18px;
+    font-size: 14px;
   }
 }
 
