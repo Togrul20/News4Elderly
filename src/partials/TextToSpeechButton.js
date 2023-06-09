@@ -8,6 +8,24 @@ const TextToSpeechButton = ({ targetElement }) => {
   const [isSpeaking, setIsSpeaking] = useState(false);
   //Language selection
   const [selectedLanguage, setSelectedLanguage] = useState("en-US");
+  const handleLanguageChange = (event) => {
+    setSelectedLanguage(event.target.value);
+  };
+  const supportedLanguages = [
+    { label: "English (US)", value: "en-US" },
+    { label: "English (UK)", value: "en-GB" },
+    { label: "French", value: "fr-FR" },
+    { label: "German", value: "de-DE" },
+    { label: "Spanish", value: "es-ES" },
+    { label: "Italian", value: "it-IT" },
+    { label: "Portuguese", value: "pt-PT" },
+    { label: "Russian", value: "ru-RU" },
+    { label: "Japanese", value: "ja-JP" },
+    { label: "Korean", value: "ko-KR" },
+    { label: "Chinese(Simplified)", value: "zh-CN" },
+    { label: "Chinese(Traditional)", value: "zh-TW" },
+    // Add more supported languages as needed
+  ];
 
   // Voice selectino
   const [voices, setVoices] = useState([]);
@@ -93,7 +111,7 @@ const TextToSpeechButton = ({ targetElement }) => {
       </div>
       {modal && (
         <div className={styles.speakBtnContainer}>
-          <select
+          {/* <select
             onChange={handleVoiceSelection}
             className={styles.ttxforContent}
           >
@@ -103,13 +121,13 @@ const TextToSpeechButton = ({ targetElement }) => {
                 {voice.name} ({voice.lang})
               </option>
             ))}
-          </select>
+          </select> */}
           <button onClick={handleSpeak}>
             {isSpeaking ? "Speaking..." : "Speak"}
           </button>
-          <button onClick={cancelSpeak}>Cancel</button>
+          <button onClick={cancelSpeak}>Reset</button>
           <div className={styles.ttxforContentPitch}>
-            <label>Voice speed change</label>
+            <label>Voice speed</label>
             <input
               type="range"
               min="0.1"
@@ -119,6 +137,17 @@ const TextToSpeechButton = ({ targetElement }) => {
               onChange={handlePitchChange}
             />
           </div>
+          <select
+            value={selectedLanguage}
+            onChange={handleLanguageChange}
+            className={styles.ttxforContent}
+          >
+            {supportedLanguages.map((language) => (
+              <option key={language.value} value={language.value}>
+                {language.label}
+              </option>
+            ))}
+          </select>
         </div>
       )}
     </>
