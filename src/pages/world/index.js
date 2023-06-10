@@ -7,7 +7,7 @@ import Footer from "../../partials/Footer";
 import Navbar from "../../partials/Navbar";
 import TopPage from "@/partials/TopPage";
 import { convertToSlug } from "@/utils/convertToSlug";
-import UseTextToSpeech from "../../partials/UseTextToSpeech"
+import TextToSpeechTitle from "../../partials/TextToSpeechTitle"
 
 // API
 export const getStaticProps = async () => {
@@ -49,7 +49,7 @@ const World = ({ world }) => {
       </div>
       <h1 className={styles.pageHeader}>World News</h1>
 
-      <UseTextToSpeech refEl={refEl} />
+      <TextToSpeechTitle refEl={refEl} />
       <TopPage />
       <div ref={refEl}>
         {world.results.map((el) => (

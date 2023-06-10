@@ -3,7 +3,7 @@ import "rsuite/dist/rsuite.min.css";
 import { Tooltip, Whisper } from "rsuite";
 import styles from "../styles/Home.module.css";
 
-const UseTextToSpeech = ({ refEl }) => {
+const TextToSpeechTitle = ({ refEl }) => {
   //Speaking or not
   const [isSpeaking, setIsSpeaking] = useState(false);
   //Resuming or not
@@ -186,4 +186,4 @@ const UseTextToSpeech = ({ refEl }) => {
   );
 };
 
-export default UseTextToSpeech;
+export default TextToSpeechTitle
