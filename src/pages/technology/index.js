@@ -5,9 +5,9 @@ import "rsuite/dist/rsuite.min.css";
 import styles from "@/styles/Home.module.css";
 import Footer from "../../partials/Footer";
 import Navbar from "../../partials/Navbar";
-import UseTextToSpeech from "../../partials/UseTextToSpeech"
 import TopPage from "@/partials/TopPage";
 import { convertToSlug } from "@/utils/convertToSlug";
+import UseTextToSpeech from "../../partials/UseTextToSpeech"
 
 // API
 export const getStaticProps = async () => {
