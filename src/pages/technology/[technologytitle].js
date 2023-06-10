@@ -1,5 +1,4 @@
-import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Router, useRouter } from "next/router";
 import Link from "next/link";
 import "rsuite/dist/rsuite.min.css";
@@ -9,6 +8,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import styles from "../../styles/NewsContents.module.css";
 import FooterContent from "../../partials/FooterContent";
 import GoogleTranslate from "../GoogleTranslate";
+import TextToSpeechButton from "@/partials/TextToSpeechButton";
 import { convertToSlug } from "@/utils/convertToSlug";
 
 const cloudinaryName = process.env.CLOUDINARY_CLOUD_NAME;
@@ -59,6 +59,9 @@ const Details = ({ context }) => {
   const goBack = () => {
     router.back();
   };
+
+  const targetElement = useRef(null);
+
   return (
     <div className={styles.articleContainer}>
       <div className={styles.backToBtnContainer}>
@@ -71,6 +74,7 @@ const Details = ({ context }) => {
         </div>
       </div>
       <h1 className={styles.articleTitle}>{context.title}</h1>
+      <TextToSpeechButton targetElement={targetElement}/>
       <div className={styles.generalContentContainer}>
         <div className={styles.contentImageContainer}>
           <Whisper
@@ -95,7 +99,7 @@ const Details = ({ context }) => {
         <p>Published: </p>
         <span>{context.pubDate}</span>
       </div>
-      <p className={styles.articleContent} style={{ fontSize: fontSize }}>
+      <p className={styles.articleContent} style={{ fontSize: fontSize }} ref={targetElement}>
         {context.content}
         <a href={context?.link} className={styles.readMore}>
           Go to the link of the news

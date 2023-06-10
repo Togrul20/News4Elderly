@@ -7,8 +7,8 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import styles from "../../styles/NewsContents.module.css";
 import FooterContent from "../../partials/FooterContent";
 import GoogleTranslate from "../GoogleTranslate";
-import { convertToSlug } from "@/utils/convertToSlug";
 import TextToSpeechButton from "@/partials/TextToSpeechButton";
+import { convertToSlug } from "@/utils/convertToSlug";
 
 const cloudinaryName = process.env.CLOUDINARY_CLOUD_NAME;
 

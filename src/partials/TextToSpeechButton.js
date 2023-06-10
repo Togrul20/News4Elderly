@@ -6,50 +6,72 @@ import styles from "../styles/Home.module.css";
 const TextToSpeechButton = ({ targetElement }) => {
   //Speaking or not
   const [isSpeaking, setIsSpeaking] = useState(false);
+  //Resuming or not
+  const [isResuming, setIsResuming] = useState(false);
+  //Paused or not
+  const [isPaused, setIsPaused] = useState(false);
+  //Reseted or not
+  const [isReseted, setIsReseted] = useState(false);
+
   //Language selection
   const [selectedLanguage, setSelectedLanguage] = useState("en-US");
   const handleLanguageChange = (event) => {
     setSelectedLanguage(event.target.value);
   };
+
   const supportedLanguages = [
+    { label: "Chinese(Simplified)", value: "zh-CN" },
+    { label: "Chinese(Traditional)", value: "zh-TW" },
     { label: "English (US)", value: "en-US" },
     { label: "English (UK)", value: "en-GB" },
     { label: "French", value: "fr-FR" },
     { label: "German", value: "de-DE" },
-    { label: "Spanish", value: "es-ES" },
+    { label: "Hindi", value: "hi-IN" },
     { label: "Italian", value: "it-IT" },
-    { label: "Portuguese", value: "pt-PT" },
-    { label: "Russian", value: "ru-RU" },
     { label: "Japanese", value: "ja-JP" },
     { label: "Korean", value: "ko-KR" },
-    { label: "Chinese(Simplified)", value: "zh-CN" },
-    { label: "Chinese(Traditional)", value: "zh-TW" },
-    // Add more supported languages as needed
+    { label: "Polish", value: "pl-PL" },
+    { label: "Portuguese", value: "pt-PT" },
+    { label: "Russian", value: "ru-RU" },
+    { label: "Spanish", value: "es-ES" },
   ];
 
-  // Voice selectino
-  const [voices, setVoices] = useState([]);
-  const [selectedVoice, setSelectedVoice] = useState(null);
-  useEffect(() => {
-    // Fetch the available voices
-    const fetchVoices = () => {
-      const speechSynthesis = window.speechSynthesis;
-      const availableVoices = speechSynthesis.getVoices();
 
-      setVoices(availableVoices);
-    };
+  // // Voice selection
+  // const [voices, setVoices] = useState([]);
+  // const [selectedVoice, setSelectedVoice] = useState(null);
+  // useEffect(() => {
+  //   // Fetch the available voices
+  //   const fetchVoices = () => {
+  //     const speechSynthesis = window.speechSynthesis;
+  //     const availableVoices = speechSynthesis.getVoices();
 
-    // Wait for the 'voiceschanged' event before fetching the voices
-    window.speechSynthesis.onvoiceschanged = fetchVoices;
-  }, []);
-  const handleVoiceSelection = (event) => {
-    const voiceName = event.target.value;
-    const voice = voices.find((voice) => voice.name === voiceName);
+  //     setVoices(availableVoices);
+  //   };
 
-    setSelectedVoice(voice);
-  };
+  //   // Wait for the 'voiceschanged' event before fetching the voices
+  //   window.speechSynthesis.onvoiceschanged = fetchVoices;
+  // }, []);
+  // const handleVoiceSelection = (event) => {
+  //   const voiceName = event.target.value;
+  //   const voice = voices.find((voice) => voice.name === voiceName);
+
+  //   setSelectedVoice(voice);
+  // };
 
   //Rate
+ 
+  {/* <select
+            onChange={handleVoiceSelection}
+            className={styles.ttxforContent}
+          >
+            <option>Select language</option>
+            {voices.map((voice) => (
+              <option key={voice.name} value={voice.name}>
+                {voice.name} ({voice.lang})
+              </option>
+            ))}
+          </select> */}
   const [rate, setRate] = useState(1);
   const handlePitchChange = (event) => {
     const newRate = parseFloat(event.target.value);
@@ -58,29 +80,59 @@ const TextToSpeechButton = ({ targetElement }) => {
 
   const handleSpeak = () => {
     setIsSpeaking(true);
+    setIsResuming(false);
+    setIsPaused(false);
+    setIsReseted(false);
     const utterance = new SpeechSynthesisUtterance();
     utterance.text = targetElement.current.innerText;
     utterance.lang = selectedLanguage;
-    utterance.voice = selectedVoice;
+    // utterance.voice = selectedVoice;
     utterance.rate = rate;
-
     utterance.onend = () => {
       setIsSpeaking(false);
     };
-
     speechSynthesis.speak(utterance);
+  };
+
+  const resumeSpeak = () => {
+    setIsSpeaking(false);
+    setIsResuming(true);
+    setIsPaused(false);
+    setIsReseted(false);
+    const utterance = new SpeechSynthesisUtterance();
+    utterance.text = targetElement.current.innerText;
+    utterance.lang = selectedLanguage;
+    utterance.onend = () => {
+      setIsSpeaking(false);
+    };
+    speechSynthesis.resume(utterance);
+  };
+
+  const pauseSpeak = () => {
+    setIsSpeaking(false);
+    setIsResuming(false);
+    setIsPaused(true);
+    setIsReseted(false);
+    const utterance = new SpeechSynthesisUtterance();
+    utterance.text = targetElement.current.innerText;
+    utterance.lang = selectedLanguage;
+    utterance.onend = () => {
+      setIsSpeaking(false);
+    };
+    speechSynthesis.pause(utterance);
   };
 
   const cancelSpeak = () => {
     setIsSpeaking(false);
+    setIsResuming(false);
+    setIsPaused(false);
+    setIsReseted(true);
     const utterance = new SpeechSynthesisUtterance();
     utterance.text = targetElement.current.innerText;
     utterance.lang = selectedLanguage;
-
     utterance.onend = () => {
       setIsSpeaking(false);
     };
-
     speechSynthesis.cancel(utterance);
   };
 
@@ -111,32 +163,12 @@ const TextToSpeechButton = ({ targetElement }) => {
       </div>
       {modal && (
         <div className={styles.speakBtnContainer}>
-          {/* <select
-            onChange={handleVoiceSelection}
-            className={styles.ttxforContent}
-          >
-            <option>Select language</option>
-            {voices.map((voice) => (
-              <option key={voice.name} value={voice.name}>
-                {voice.name} ({voice.lang})
-              </option>
-            ))}
-          </select> */}
-          <button onClick={handleSpeak}>
-            {isSpeaking ? "Speaking..." : "Speak"}
-          </button>
-          <button onClick={cancelSpeak}>Reset</button>
-          <div className={styles.ttxforContentPitch}>
-            <label>Voice speed</label>
-            <input
-              type="range"
-              min="0.1"
-              max="2"
-              step="0.1"
-              value={rate}
-              onChange={handlePitchChange}
-            />
-          </div>
+        <Whisper followCursor
+          placement="top"
+          trigger="hover"
+          speaker={
+            <Tooltip visible>Select a speech language</Tooltip>
+          }>
           <select
             value={selectedLanguage}
             onChange={handleLanguageChange}
@@ -148,6 +180,31 @@ const TextToSpeechButton = ({ targetElement }) => {
               </option>
             ))}
           </select>
+        </Whisper>
+          
+          <button onClick={handleSpeak}>
+            {isSpeaking ? "Speaking..." : "Speak"}
+          </button>
+          <button onClick={resumeSpeak}>
+            {isResuming ? "Resuming..." : "Resume"}
+          </button>
+          <button onClick={pauseSpeak}>
+            {isPaused ? "Paused" : "Pause"}
+          </button>
+          <button onClick={cancelSpeak}>
+            {isReseted ? "Reseted" : "Reset"}
+          </button>
+          <div className={styles.ttxforContentPitch}>
+            <label>Voice speed</label>
+            <input
+              type="range"
+              min="0.1"
+              max="2"
+              step="0.1"
+              value={rate}
+              onChange={handlePitchChange}
+            />
+          </div>
         </div>
       )}
     </>

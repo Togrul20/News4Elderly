@@ -5,12 +5,15 @@ import "rsuite/dist/rsuite.min.css";
 import styles from "@/styles/Home.module.css";
 import Footer from "../../partials/Footer";
 import Navbar from "../../partials/Navbar";
-import TTXButtons from "@/partials/TTXButtons";
+import UseTextToSpeech from "@/partials/UseTextToSpeech";
+import TopPage from "@/partials/TopPage";
 import { convertToSlug } from "@/utils/convertToSlug";
 
 // API
 export const getStaticProps = async () => {
-  const result = await fetch(`https://newsdata.io/api/1/news?apikey=${process.env.NEWSDATA_KEY}&country=az,us,tr,ru,in&category=sports`);
+  const result = await fetch(
+    `https://newsdata.io/api/1/news?apikey=${process.env.NEWSDATA_KEY}&country=az,us,tr,ru,in&category=sports`
+  );
   const options = await result.json();
 
   return {
@@ -36,7 +39,7 @@ const Sports = ({ sports }) => {
     return el.title;
   });
 
-
+  const refEl = useRef(null);
 
   return (
     <div className={styles.sciencestyle}>
@@ -45,43 +48,46 @@ const Sports = ({ sports }) => {
       </div>
       <h1 className={styles.pageHeader}>Sports News</h1>
 
-      <TTXButtons title={title}/>
+      <UseTextToSpeech refEl={refEl} />
+      <TopPage />
 
-      {sports.results.map((el) => (
-        <div key={el.id} className={styles.generalContainer}>
-          <div className={styles.imageContainer}>
-            <Image
-              className={styles.imageitslef}
-              src={el.image_url}
-              cloudName={cloudinaryName}
-              width={150}
-              height={150}
-              alt="Image of the news"
-              object-fit="fit"
-            />
-          </div>
-          <div className={styles.dateTimeContainer}>
-            <span>Published:</span>
-            <span>{el.pubDate}</span>
-          </div>
-          <Link
-            href={"/sports/" + convertToSlug(el?.title)}
-            key={el.id}
-            legacyBehavior
-          >
-            <p
-              className={styles.newscontentssingle}
-              style={{ fontSize: fontSize }}
+      <div ref={refEl}>
+        {sports.results.map((el) => (
+          <div key={el.id} className={styles.generalContainer}>
+            <div className={styles.imageContainer}>
+              <Image
+                className={styles.imageitslef}
+                src={el.image_url}
+                cloudName={cloudinaryName}
+                width={150}
+                height={150}
+                alt="Image of the news"
+                object-fit="fit"
+              />
+            </div>
+            <div className={styles.dateTimeContainer}>
+              <span>Published:</span>
+              <span>{el.pubDate}</span>
+            </div>
+            <Link
+              href={"/sports/" + convertToSlug(el?.title)}
+              key={el.id}
+              legacyBehavior
             >
-              {el.title}
+              <p
+                className={styles.newscontentssingle}
+                style={{ fontSize: fontSize }}
+              >
+                {el.title}
 
-              <span className={styles.contentTooltip}>
-                Click to see the news
-              </span>
-            </p>
-          </Link>
-        </div>
-      ))}
+                <span className={styles.contentTooltip}>
+                  Click to see the news
+                </span>
+              </p>
+            </Link>
+          </div>
+        ))}
+      </div>
       <Footer zoomIn={zoomIn} zoomOut={zoomOut} />
     </div>
   );

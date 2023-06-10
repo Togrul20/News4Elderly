@@ -1,16 +1,19 @@
 import React, { useState, useRef } from "react";
 import Link from "next/link";
-import {CloudinaryContext, Image } from 'cloudinary-react';
+import { CloudinaryContext, Image } from "cloudinary-react";
 import "rsuite/dist/rsuite.min.css";
 import styles from "@/styles/Home.module.css";
 import Footer from "../../partials/Footer";
 import Navbar from "../../partials/Navbar";
-import TTXButtons from "@/partials/TTXButtons";
+import UseTextToSpeech from "@/partials/UseTextToSpeech";
+import TopPage from "@/partials/TopPage";
 import { convertToSlug } from "@/utils/convertToSlug";
 
 // API
 export const getStaticProps = async () => {
-  const result = await fetch(`https://newsdata.io/api/1/news?apikey=${process.env.NEWSDATA_KEY}&country=az,us,tr,ru,in&category=science`);
+  const result = await fetch(
+    `https://newsdata.io/api/1/news?apikey=${process.env.NEWSDATA_KEY}&country=az,us,tr,ru,in&category=science`
+  );
   const options = await result.json();
 
   return {
@@ -36,6 +39,7 @@ const Science = ({ science }) => {
     return el.title;
   });
 
+  const refEl = useRef(null);
 
   return (
     <div className={styles.sciencestyle}>
@@ -44,46 +48,46 @@ const Science = ({ science }) => {
       </div>
       <h1 className={styles.pageHeader}>Science News</h1>
 
-      <TTXButtons title={title} />
+      <UseTextToSpeech refEl={refEl} />
+      <TopPage />
 
-      {science.results.map((el) => (
-        <div key={el.id} className={styles.generalContainer}>
-          <div className={styles.imageContainer}>
-          <CloudinaryContext cloudName={cloudinaryName}>
-
-            <Image
-              className={styles.imageitslef}
-              src={el.image_url}
-           
-              width={150}
-              height={150}
-              alt="Image of the news"
-              object-fit="fit"
-            />
-          </CloudinaryContext>
-          </div>
-          <div className={styles.dateTimeContainer}>
-            <span>Published:</span>
-            <span>{el.pubDate}</span>
-          </div>
-          <Link
-            href={"/science/" + convertToSlug(el?.title)}
-            key={el.id}
-            legacyBehavior
-          >
-            <p
-              className={styles.newscontentssingle}
-              style={{ fontSize: fontSize }}
+      <div ref={refEl}>
+        {science.results.map((el) => (
+          <div key={el.id} className={styles.generalContainer}>
+            <div className={styles.imageContainer}>
+              <Image
+                className={styles.imageitslef}
+                src={el.image_url}
+                width={150}
+                height={150}
+                cloudName={cloudinaryName}
+                alt="Image of the news"
+                object-fit="fit"
+              />
+            </div>
+            <div className={styles.dateTimeContainer}>
+              <span>Published:</span>
+              <span>{el.pubDate}</span>
+            </div>
+            <Link
+              href={"/science/" + convertToSlug(el?.title)}
+              key={el.id}
+              legacyBehavior
             >
-              {el.title}
+              <p
+                className={styles.newscontentssingle}
+                style={{ fontSize: fontSize }}
+              >
+                {el.title}
 
-              <span className={styles.contentTooltip}>
-                Click to see the news
-              </span>
-            </p>
-          </Link>
-        </div>
-      ))}
+                <span className={styles.contentTooltip}>
+                  Click to see the news
+                </span>
+              </p>
+            </Link>
+          </div>
+        ))}
+      </div>
       <Footer zoomIn={zoomIn} zoomOut={zoomOut} />
     </div>
   );

@@ -5,7 +5,8 @@ import "rsuite/dist/rsuite.min.css";
 import styles from "@/styles/Home.module.css";
 import Footer from "../../partials/Footer";
 import Navbar from "../../partials/Navbar";
-import TTXButtons from "@/partials/TTXButtons";
+import UseTextToSpeech from "@/partials/UseTextToSpeech";
+import TopPage from "@/partials/TopPage";
 import { convertToSlug } from "@/utils/convertToSlug";
 
 // API
@@ -38,6 +39,9 @@ const Technology = ({ technology }) => {
     return el.title;
   });
 
+  const refEl = useRef(null);
+
+
   return (
     <div className={styles.sciencestyle}>
       <div>
@@ -45,43 +49,46 @@ const Technology = ({ technology }) => {
       </div>
       <h1 className={styles.pageHeader}>Technology News</h1>
 
-      <TTXButtons title={title}/>
+      <UseTextToSpeech refEl={refEl} />
+      <TopPage />
 
-      {technology.results.map((el) => (
-        <div key={el.id} className={styles.generalContainer}>
-          <div className={styles.imageContainer}>
-            <Image
-              className={styles.imageitslef}
-              src={el.image_url}
-              cloudName={cloudinaryName}
-              width={150}
-              height={150}
-              alt="Image of the news"
-              object-fit="fit"
-            />
-          </div>
-          <div className={styles.dateTimeContainer}>
-            <span>Published:</span>
-            <span>{el.pubDate}</span>
-          </div>
-          <Link
-            href={"/technology/" + convertToSlug(el?.title)}
-            key={el.id}
-            legacyBehavior
-          >
-            <p
-              className={styles.newscontentssingle}
-              style={{ fontSize: fontSize }}
+      <div ref={refEl}>
+        {technology.results.map((el) => (
+          <div key={el.id} className={styles.generalContainer}>
+            <div className={styles.imageContainer}>
+              <Image
+                className={styles.imageitslef}
+                src={el.image_url}
+                cloudName={cloudinaryName}
+                width={150}
+                height={150}
+                alt="Image of the news"
+                object-fit="fit"
+              />
+            </div>
+            <div className={styles.dateTimeContainer}>
+              <span>Published:</span>
+              <span>{el.pubDate}</span>
+            </div>
+            <Link
+              href={"/technology/" + convertToSlug(el?.title)}
+              key={el.id}
+              legacyBehavior
             >
-              {el.title}
+              <p
+                className={styles.newscontentssingle}
+                style={{ fontSize: fontSize }}
+              >
+                {el.title}
 
-              <span className={styles.contentTooltip}>
-                Click to see the news
-              </span>
-            </p>
-          </Link>
-        </div>
-      ))}
+                <span className={styles.contentTooltip}>
+                  Click to see the news
+                </span>
+              </p>
+            </Link>
+          </div>
+        ))}
+      </div>
       <Footer zoomIn={zoomIn} zoomOut={zoomOut} />
     </div>
   );

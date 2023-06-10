@@ -5,9 +5,9 @@ import "rsuite/dist/rsuite.min.css";
 import styles from "@/styles/Home.module.css";
 import Footer from "../../partials/Footer";
 import Navbar from "../../partials/Navbar";
-import TTXButtons from "@/partials/TTXButtons";
+import UseTextToSpeech from "@/partials/UseTextToSpeech";
+import TopPage from "@/partials/TopPage";
 import { convertToSlug } from "@/utils/convertToSlug";
-
 
 export const getStaticProps = async () => {
   const result = await fetch(
@@ -31,11 +31,14 @@ const TopNews = ({ info }) => {
   const zoomOut = (e) => {
     e.preventDefault();
     setFontSize(fontSize - 2);
+    console.log(refEl);
   };
 
   const title = info.articles.map((el) => {
     return el.title;
   });
+
+  const refEl = useRef(null);
 
   return (
     <div className={styles.sciencestyle}>
@@ -44,43 +47,48 @@ const TopNews = ({ info }) => {
       </div>
       <h1 className={styles.pageHeader}>Top News</h1>
 
-      <TTXButtons title={title} />
+      <UseTextToSpeech refEl={refEl} />
+      <TopPage />
 
-      {info.articles.map((el) => (
-        <div key={el.title} className={styles.generalContainer}>
-          <div className={styles.imageContainer}>
-            <Image
-              className={styles.imageitslef}
-              src={el.urlToImage}
-              cloudName={cloudinaryName}
-              width={150}
-              height={150}
-              alt="Image of the news"
-              object-fit="fit"
-            />
-          </div>
-          <div className={styles.dateTimeContainer}>
-            <span>Published:</span>
-            <span>{el.publishedAt}</span>
-          </div>
-          <Link
-            href={"/info/" + convertToSlug(el?.title)}
-            key={el.id}
-            legacyBehavior
-          >
-            <p
-              className={styles.newscontentssingle}
-              style={{ fontSize: fontSize }}
+
+      <div ref={refEl}>
+        {info.articles.map((el) => (
+          <div key={el.title} className={styles.generalContainer}>
+            <div className={styles.imageContainer}>
+              <Image
+                className={styles.imageitslef}
+                src={el.urlToImage}
+                cloudName={cloudinaryName}
+                width={150}
+                height={150}
+                alt="Image of the news"
+                object-fit="fit"
+              />
+            </div>
+            <div className={styles.dateTimeContainer}>
+              <span>Published:</span>
+              <span>{el.publishedAt}</span>
+            </div>
+            <Link
+              href={"/info/" + convertToSlug(el?.title)}
+              key={el.id}
+              legacyBehavior
             >
-              {el.title}
+              <p
+                className={styles.newscontentssingle}
+                style={{ fontSize: fontSize }}
+              >
+                {el.title}
 
-              <span className={styles.contentTooltip}>
-                Click to see the news
-              </span>
-            </p>
-          </Link>
-        </div>
-      ))}
+                <span className={styles.contentTooltip}>
+                  Click to see the news
+                </span>
+              </p>
+            </Link>
+          </div>
+        ))}
+      </div>
+
       <Footer zoomIn={zoomIn} zoomOut={zoomOut} />
     </div>
   );
