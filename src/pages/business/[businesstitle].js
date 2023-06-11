@@ -46,7 +46,6 @@ export const getStaticProps = async (context) => {
   };
 };
 
-
 const Details = ({ context }) => {
   var [fontSize, setFontSize] = useState(25);
   const zoomInArticle = (e) => {
@@ -77,7 +76,7 @@ const Details = ({ context }) => {
         </div>
       </div>
       <h1 className={styles.articleTitle}>{context.title}</h1>
-      <TextToSpeechButton targetElement={targetElement}/>
+      <TextToSpeechButton targetElement={targetElement} />
       <div className={styles.generalContentContainer}>
         <div className={styles.contentImageContainer}>
           <Whisper

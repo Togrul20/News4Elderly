@@ -25,17 +25,18 @@ const Guideline = () => {
             at the top-left.
           </p>
           <p>3.App can be installed with Install the App button.</p>
-          <p>4.Language can be changed with Language button at the top-right.</p>
+          <p>4.Change the language with button at the top-right.</p>
           <p>
             5.Text-to-speech can be used in each news category with
             Text-to-speech button. However, it does not cover all languages.
           </p>
           <p>
-            <i>
-              If these functionalities do not work properly, please refresh the
-              page!
-            </i>
-            <i>By default, all functionalities are in English.</i>
+            <u>
+              <i>
+                If these functionalities do not work properly, please refresh
+                the page! By default, all functionalities are in English.
+              </i>
+            </u>
           </p>
         </div>
       ) : null}

@@ -58,7 +58,7 @@ const InstallPrompt = () => {
       <button
         id="install-button"
         style={{
-          display: "none",
+          display: "block",
           color: "white",
           background: "black",
           border: "2px solid white",
