@@ -3,7 +3,7 @@
   "background_color": "#ffffff",
   "display": "standalone",
   "scope": "/",
-  "start_url": "/",
+  "start_url": "https://news4elderly.vercel.app/",
   "name": "News4Elderly",
   "short_name": "News4Elderly",
   "description": "An accessible news app for elderly",
